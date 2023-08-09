@@ -9,12 +9,16 @@ const createTask = (e) => {
     card.classList.add('card');
     const taskCard = document.createElement('div');
     taskCard.appendChild(check())
+   
     const title = document.createElement('span');
+
     title.classList.add('task')
     title.innerText = value
-    const content = `<i class="fas fa-trash-alt trashIcon icon"></i>`;
+    
+   
     taskCard.appendChild(title)
     card.appendChild(taskCard);
+    card.appendChild(removeIcon());
     cardList.appendChild(card);    
     input.value = "";
 
@@ -34,4 +38,18 @@ const checked = (e) => {
     element.classList.toggle('fas');
     element.classList.toggle('completeIcon');
     element.classList.toggle('far');
+}
+
+const removeIcon = () => {
+    const i = document.createElement('i');
+    i.classList.add('fas', 'fa-trash-alt', 'trashIcon','icon')
+    i.addEventListener('click', deleteCard )
+    return i
+}
+
+
+const deleteCard = (e) => {
+    const parent = e.target.parentElement;
+    parent.remove()
+
 }
